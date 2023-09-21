@@ -4,13 +4,28 @@ import "./controllers"
 
 
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import Greetings from './pages/Greetings';
+
+import { Provider } from 'react-redux';
+import store from './redux/store'; // Import your Redux store
+
+
 
 function App() {
-  return (<h1>Hi!</h1>);
+  return (
+    <Router>
+    <Routes>
+      <Route index element={<Greetings />} />
+    </Routes>
+  </Router>
+  );
 }
 
 ReactDOM.render(
-  <App/>,
+  <Provider store={store}>
+  <App />
+  </Provider>,
   document.getElementById('root'),
 );
