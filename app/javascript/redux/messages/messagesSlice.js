@@ -14,8 +14,8 @@ export const fetchMessages = createAsyncThunk('messages/fetchMessages', async ()
 
 const initialState = {
   messageList: [],
-  status: 'idle', 
-  error: null,    
+  status: 'idle',
+  error: null,
 };
 
 const messageSlice = createSlice({
@@ -39,16 +39,9 @@ const messageSlice = createSlice({
           status: 'succeeded',
         };
       })
-      .addCase(fetchMessages.pending, (state) => {
-        return { ...state, status: 'loading' };
-      })
-      .addCase(fetchMessages.rejected, (state, action) => {
-        return { ...state, status: 'failed', error: action.error.message };
-      });
+      .addCase(fetchMessages.pending, (state) => ({ ...state, status: 'loading' }))
+      .addCase(fetchMessages.rejected, (state, action) => ({ ...state, status: 'failed', error: action.error.message }));
   },
 });
 
 export default messageSlice.reducer;
-
-
-

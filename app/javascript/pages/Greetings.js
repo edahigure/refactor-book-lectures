@@ -12,8 +12,6 @@ export default function Greetings() {
     status,
   } = useSelector((store) => store.message);
 
-  
-
   useEffect(() => {
     // Check the status from the Redux store
     if (status === 'idle') {
@@ -24,7 +22,6 @@ export default function Greetings() {
   const myMessages = [];
   console.log('here ok');
   console.log(messageList);
-
 
   for (let i = 0; i < messageList.length; i += 1) {
     const str = `message${i}`;

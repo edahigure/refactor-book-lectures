@@ -1,7 +1,5 @@
-
-import messageReducer from './messages/messagesSlice';
-
 import { configureStore } from '@reduxjs/toolkit';
+import messageReducer from './messages/messagesSlice';
 
 const store = configureStore({
   reducer: {
