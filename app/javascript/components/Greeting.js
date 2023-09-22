@@ -33,4 +33,4 @@ Greeting.defaultProps = {
   text: 'none',
 };
 
-export { Greeting };
+export { Greeting as default };

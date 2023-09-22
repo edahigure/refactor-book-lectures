@@ -20,7 +20,7 @@ function App() {
   );
 }
 
-ReactDOM.render(
+ReactDOM.createRoot(
   <Provider store={store}>
     <App />
   </Provider>,
