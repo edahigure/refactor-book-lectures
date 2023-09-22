@@ -8,7 +8,7 @@ function Greeting(props) {
   } = props;
   return (
     <div>
-      Hello Greeting 
+      Hello Greeting
       id:
       {id}
       text:
