@@ -8,9 +8,9 @@ function Greeting(props) {
   } = props;
   return (
     <div>
-      Hello Greeting id:
+      Hello Greeting 
+      id:
       {id}
-      {' '}
       text:
       {text}
     </div>
@@ -19,18 +19,12 @@ function Greeting(props) {
 
 Greeting.propTypes = {
   id: PropTypes.string,
-};
-
-Greeting.defaultProps = {
-  id: 'none',
-};
-
-Greeting.propTypes = {
   text: PropTypes.string,
 };
 
 Greeting.defaultProps = {
+  id: 'none',
   text: 'none',
 };
 
-export { Greeting as default };
+export default Greeting;

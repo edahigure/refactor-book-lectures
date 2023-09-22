@@ -4,7 +4,7 @@ import './controllers';
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom';
 import { Provider } from 'react-redux';
 import Greetings from './pages/Greetings';
 
@@ -19,8 +19,10 @@ function App() {
     </Router>
   );
 }
+const root = createRoot(document.getElementById('root'));
 
-ReactDOM.createRoot(
+
+root.render(
   <Provider store={store}>
     <App />
   </Provider>,
