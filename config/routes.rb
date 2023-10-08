@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :inscriptions
+  resources :reservations
+  resources :courses
+  resources :teachers
+  resources :lectures
   devise_for :users
   get 'root/index'
   resources :mesages

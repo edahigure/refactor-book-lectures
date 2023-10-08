@@ -10,18 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_151918) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_08_145436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "mesages", force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.string "image_url"
+    t.string "description"
+    t.string "web_link"
+    t.decimal "price"
+    t.datetime "end_date"
+    t.datetime "start_date"
+    t.boolean "removed"
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id"
+  end
+
+  create_table "inscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.decimal "payment"
+    t.boolean "paid"
+    t.boolean "removed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_inscriptions_on_course_id"
+    t.index ["user_id"], name: "index_inscriptions_on_user_id"
+  end
+
+  create_table "lectures", force: :cascade do |t|
+    t.string "name"
+    t.string "image_url"
+    t.string "description"
+    t.string "web_link"
+    t.decimal "price"
+    t.boolean "removed"
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.string "text"
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lecture_id", null: false
+    t.datetime "date"
+    t.string "place"
+    t.decimal "payment"
+    t.boolean "paid"
+    t.boolean "removed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_id"], name: "index_reservations_on_lecture_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,8 +95,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_151918) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "phone"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "courses", "teachers"
+  add_foreign_key "inscriptions", "courses"
+  add_foreign_key "inscriptions", "users"
+  add_foreign_key "lectures", "teachers"
+  add_foreign_key "reservations", "lectures"
+  add_foreign_key "reservations", "users"
 end

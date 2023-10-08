@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  image_url: MyString
+  description: MyString
+  web_link: MyString
+  price: 9.99
+  duration: 9.99
+  start_date: 2023-10-08 07:07:24
+  removed: false
+  teacher: one
+
+two:
+  name: MyString
+  image_url: MyString
+  description: MyString
+  web_link: MyString
+  price: 9.99
+  duration: 9.99
+  start_date: 2023-10-08 07:07:24
+  removed: false
+  teacher: two
