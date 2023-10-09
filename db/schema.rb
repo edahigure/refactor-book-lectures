@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_145436) do
     t.decimal "price"
     t.datetime "end_date"
     t.datetime "start_date"
-    t.boolean "removed"
+    t.boolean "cancelled"
     t.bigint "teacher_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_145436) do
     t.bigint "course_id", null: false
     t.decimal "payment"
     t.boolean "paid"
-    t.boolean "removed"
+    t.boolean "cancelled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_inscriptions_on_course_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_145436) do
     t.string "description"
     t.string "web_link"
     t.decimal "price"
-    t.boolean "removed"
+    t.boolean "cancelled"
     t.bigint "teacher_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_145436) do
     t.string "place"
     t.decimal "payment"
     t.boolean "paid"
-    t.boolean "removed"
+    t.boolean "cancelled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_reservations_on_lecture_id"
@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_08_145436) do
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,7 +6,7 @@ class CreateLectures < ActiveRecord::Migration[7.0]
       t.string :description
       t.string :web_link
       t.decimal :price
-      t.boolean :removed
+      t.boolean :cancelled
       t.references :teacher, null: false, foreign_key: true
 
       t.timestamps

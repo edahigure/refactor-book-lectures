@@ -7,7 +7,7 @@ class CreateReservations < ActiveRecord::Migration[7.0]
       t.string :place
       t.decimal :payment
       t.boolean :paid
-      t.boolean :removed
+      t.boolean :cancelled
 
       t.timestamps
     end

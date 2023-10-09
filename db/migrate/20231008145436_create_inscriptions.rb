@@ -5,7 +5,7 @@ class CreateInscriptions < ActiveRecord::Migration[7.0]
       t.references :course, null: false, foreign_key: true
       t.decimal :payment
       t.boolean :paid
-      t.boolean :removed
+      t.boolean :cancelled
 
       t.timestamps
     end

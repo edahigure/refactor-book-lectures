@@ -8,7 +8,7 @@ class CreateCourses < ActiveRecord::Migration[7.0]
       t.decimal :price
       t.datetime :end_date
       t.datetime :start_date
-      t.boolean :removed
+      t.boolean :cancelled
       t.references :teacher, null: false, foreign_key: true
 
       t.timestamps
