@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import axios from 'axios';
 
 const url = 'http://localhost:3000/api/v1/lectures';
@@ -12,57 +13,23 @@ export const fetchMessages = createAsyncThunk('messages/fetchMessages', async ()
   }
 });
 
-export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (payload) => {
-  const {
-    name, imageUrl, description, webLink, price,
-  } = payload;
-  try {
-    const resp = await axios.post(url, {
-      name,
-      image_url: imageUrl,
-      description,
-      web_link: webLink,
-      price,
-    });
-    return resp.data;
-  } catch (error) {
-    return error.message;
-  }
-});
-
-export const deleteItemAxios = createAsyncThunk('messages/deleteItemAxios', async (payload) => {
-  const { id } = payload;
-  try {
-    const resp = await axios.delete(`${url}/${id}`);
-    return resp.data;
-  } catch (error) {
-    return error.message;
-  }
-});
-
-const initialState = {
-  messageList: [],
-  status: 'idle',
-  error: null,
-};
-
-const messageSlice = createSlice({
-  name: 'message',
-  initialState,
+const lectureSlice = createSlice({
+  name: 'lecture',
+  initialState: {
+    allLecture: [],
+    status: 'no deleted',
+  },
   reducers: {
-    addLecture: (state, action) => {
-      const newState = {
-        state,
-        messageList: [...state.messageList,
-          { ...action.payload }],
-      };
-      return newState;
-    },
+    setAllLecture: (state, action) => ({
+      ...state,
+      allLecture: action.payload,
+    }),
     removeLecture: (state, action) => {
-      const { id } = action.payload;
+      const id = action.payload;
       const newState = {
         state,
-        messageList: [...state.messageList.filter((item) => item.id !== id)],
+        allLecture: [...state.allLecture.filter((item) => item.id !== id)],
+        status: 'deleted',
       };
       return newState;
     },
@@ -85,12 +52,13 @@ const messageSlice = createSlice({
           newMessageList.push(newMessage);
         });
 
-        return { messageList: newMessageList, status: 'succeeded' };
+        return { allLecture: newMessageList, status: 'succeeded' };
       })
       .addCase(fetchMessages.pending, (state) => ({ ...state, status: 'loading' }))
       .addCase(fetchMessages.rejected, (state, action) => ({ ...state, status: 'failed', error: action.error.message }));
   },
 });
 
-export const { addLecture, removeLecture } = messageSlice.actions;
-export default messageSlice.reducer;
+export const { setAllLecture, removeLecture } = lectureSlice.actions;
+
+export default lectureSlice.reducer;
