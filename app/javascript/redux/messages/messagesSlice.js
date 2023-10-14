@@ -14,7 +14,7 @@ export const fetchMessages = createAsyncThunk('messages/fetchMessages', async ()
 
 export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (payload) => {
   const {
-    name, imageUrl, description, webLink, price,
+    name, imageUrl, description, webLink, price, cancelled, teacherId
   } = payload;
   try {
     const resp = await axios.post(url, {
@@ -23,6 +23,8 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
       description,
       web_link: webLink,
       price,
+      cancelled,
+      teacher_id: teacherId
     });
     return resp.data;
   } catch (error) {
@@ -72,8 +74,9 @@ const messageSlice = createSlice({
       .addCase(fetchMessages.fulfilled, (state, action) => {
         // Assuming that the action.payload.data contains the fetched message data
 
+        console.log(action.payload)
         const newMessageList = [];
-        Object.keys(action.payload).forEach((el) => {
+        Object.keys(action.payload).forEach((el) => {          
           const newMessage = {
             id: action.payload[el].id,
             name: action.payload[el].name,
@@ -81,6 +84,9 @@ const messageSlice = createSlice({
             description: action.payload[el].description,
             webLink: action.payload[el].web_link,
             price: action.payload[el].price,
+            cancelled: action.payload[el].cancelled,
+            teacherId: action.payload[el].teacher_id,
+            
           };
           newMessageList.push(newMessage);
         });

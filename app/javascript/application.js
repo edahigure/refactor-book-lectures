@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createRoot } from 'react-dom';
 import { Provider } from 'react-redux';
 import Greetings from './pages/Greetings';
+import AddLecture from './components/AddLecture';
 
 import store from './redux/store'; // Import your Redux store
 
@@ -19,7 +20,8 @@ function App() {
       <div className="container-column">
     <Nav />
     <Routes className="container-routes">
-      <Route index element={<Greetings />} />      
+      <Route index element={<Greetings />} /> 
+      <Route path="add_lecture" element={<AddLecture />} />
     </Routes>
   </div>
     </Router>

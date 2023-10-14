@@ -2,9 +2,32 @@ import './Nav.css';
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser } from '../redux/user/userReducer';
 
 
 const Nav = () => {
+
+  const dispatch = useDispatch();
+  const { status } = useSelector((store) => store.currentUser);
+
+  useEffect(() => {
+    if (status === 'no user') {
+      const getUser = async () => {
+        const url = 'http://localhost:3000/api/v1/users';
+        return new Promise((resolve, reject) => {
+          fetch(url)
+            .then((res) => res.json())
+            .then((userid) => {
+              dispatch(setCurrentUser(userid));
+              resolve(userid);
+            }).catch((err) => {
+              reject(err);
+            });
+        });
+      };
+      getUser();
+    }
+  }, [status, dispatch]);
 
   return (
     <div className="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-light d-flex sticky-top">
