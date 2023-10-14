@@ -90,12 +90,14 @@
   .wrapper-add-lecture {
     display: flex;
     flex-direction: column;
-    background-color: #96c036;
     color: grey;
     font-size: 35px;
     width: 75%;
     padding: 24px;
     align-items: center;
+    background: #96c036 url(../../../public/images/planet.png) no-repeat center center; /* Background color and image */
+    background-size: cover; /* Adjust the size as needed */
+    background-blend-mode: multiply; /* Blend mode to make the image appear lighter */
   }
 
   .content {

@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom';
 import { Provider } from 'react-redux';
 import Greetings from './pages/Greetings';
 import AddLecture from './components/AddLecture';
+import Details from './components/Details';
 
 import store from './redux/store'; // Import your Redux store
 
@@ -22,6 +23,7 @@ function App() {
     <Routes className="container-routes">
       <Route index element={<Greetings />} /> 
       <Route path="add_lecture" element={<AddLecture />} />
+      <Route path="lecture_details" element={<Details />} />
     </Routes>
   </div>
     </Router>

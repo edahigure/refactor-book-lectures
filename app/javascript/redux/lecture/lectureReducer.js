@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import axios from 'axios';
 
 const url = 'http://localhost:3000/api/v1/lectures';
@@ -10,6 +9,36 @@ export const fetchMessages = createAsyncThunk('messages/fetchMessages', async ()
     return response.data;
   } catch (err) {
     return err.message;
+  }
+});
+
+export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (payload) => {
+  const {
+    name, imageUrl, description, webLink, price, cancelled, teacherId
+  } = payload;
+  try {
+    const resp = await axios.post(url, {
+      name,
+      image_url: imageUrl,
+      description,
+      web_link: webLink,
+      price,
+      cancelled,
+      teacher_id: teacherId
+    });
+    return resp.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+export const deleteItemAxios = createAsyncThunk('messages/deleteItemAxios', async (payload) => {
+  const { id } = payload;
+  try {
+    const resp = await axios.delete(`${url}/${id}`);
+    return resp.data;
+  } catch (error) {
+    return error.message;
   }
 });
 
