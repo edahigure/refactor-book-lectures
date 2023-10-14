@@ -129,8 +129,8 @@ function AddLecture() {
             type="textarea"
             name="description"
             placeholder="Description"
-            value={inputs.description || ''}
-            onChange={handleChange}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </label>
 
