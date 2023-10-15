@@ -22,6 +22,7 @@ function App() {
     <Nav />
     <Routes className="container-routes">
       <Route index element={<Greetings />} /> 
+      <Route path="lectures" element={<Greetings />} />
       <Route path="add_lecture" element={<AddLecture />} />
       <Route path="lecture_details" element={<Details />} />
     </Routes>

@@ -57,6 +57,7 @@ const messageSlice = createSlice({
         state,
         messageList: [...state.messageList,
           { ...action.payload }],
+          status: 'add_lecture',
       };
       return newState;
     },

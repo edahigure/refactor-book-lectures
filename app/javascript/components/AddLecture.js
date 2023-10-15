@@ -24,7 +24,10 @@ function AddLecture() {
   console.log('currentUser',currentUser);
 
   useEffect(() => {
-    dispatch(fetchMessages());
+    if(status === 'add_lecture'){
+      dispatch(fetchMessages());
+    }
+    
   }, [dispatch]);
 
   const handleChange = (event) => {
@@ -57,9 +60,9 @@ function AddLecture() {
       cancelled,
       teacherId
     }));
-
-    navigate('/');
     dispatch(fetchMessages());
+    navigate('/lectures');
+    
   };
 
   return (

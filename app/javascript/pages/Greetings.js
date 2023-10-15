@@ -12,7 +12,7 @@ export default function Greetings() {
 
   useEffect(() => {
     // Check the status from the Redux store
-    if (status === 'idle') {
+    if (status === 'idle' || status === 'add_lecture' ) {
       dispatch(fetchMessages());
     }
   }, [status, dispatch]);
