@@ -16,13 +16,13 @@ class Api::V1::LecturesController < ApplicationController
 
   def create
     @lecture = Lecture.new(
-      name: reservation_params[:name],
-      image_url: reservation_params[:image_url],
-      description: reservation_params[:description],
-      web_link: reservation_params[:web_link],
-      price: reservation_params[:price],
-      cancelled: reservation_params[:price],
-      teacher_id: reservation_params[:teacher_id],
+      name: lecture_params[:name],
+      image_url: lecture_params[:image_url],
+      description: lecture_params[:description],
+      web_link: lecture_params[:web_link],
+      price: lecture_params[:price],
+      cancelled: lecture_params[:price],
+      teacher_id: lecture_params[:teacher_id],
     )
 
     if @lecture.save
@@ -49,7 +49,7 @@ class Api::V1::LecturesController < ApplicationController
     end
   end
 
-  def reservation_params
+  def lecture_params
     params.require(:lecture).permit(:name, :image_url, :description, :web_link, :price, :cancelled, :teacher_id)
   end
 
