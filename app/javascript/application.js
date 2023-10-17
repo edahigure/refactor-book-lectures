@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import Greetings from './pages/Greetings';
 import AddLecture from './components/AddLecture';
 import Details from './components/Details';
+import Reservations from './pages/Reservations';
 
 import store from './redux/store'; // Import your Redux store
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="lectures" element={<Greetings />} />
       <Route path="add_lecture" element={<AddLecture />} />
       <Route path="lecture_details" element={<Details />} />
+      <Route path="reservations" element={<Reservations />} />
     </Routes>
   </div>
     </Router>

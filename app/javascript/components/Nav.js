@@ -62,7 +62,7 @@ const Nav = () => {
           <li className="nav-item">
             <NavLink
               id="hide-1"
-              to="/my-reservations"
+              to="/reservations"
               className={({ isActive }) => (isActive ? 'StyledNavLink' : 'StyledNavLink active')}
             >
               RESERVATIONS

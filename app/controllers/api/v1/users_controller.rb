@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     @user = current_user
+  
 
     respond_to do |format|
       format.json { render json: JSON.pretty_generate(@user.id.as_json) }

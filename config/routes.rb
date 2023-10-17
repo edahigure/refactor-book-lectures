@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :messages
       resources :lectures
       resources :users, only: [:index, :show] do
-        resources :reservations, only: [:index, :create, :update]
+        resources :reservations, only: [:index, :create, :update, :destroy]
       end
     end
   end

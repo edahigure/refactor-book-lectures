@@ -75,7 +75,6 @@ const messageSlice = createSlice({
       .addCase(fetchMessages.fulfilled, (state, action) => {
         // Assuming that the action.payload.data contains the fetched message data
 
-        console.log(action.payload)
         const newMessageList = [];
         Object.keys(action.payload).forEach((el) => {          
           const newMessage = {
