@@ -16,6 +16,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
   const {
     name, imageUrl, description, webLink, price, cancelled, teacherId
   } = payload;
+  
   try {
     const resp = await axios.post(url, {
       name,
@@ -32,8 +33,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
   }
 });
 
-export const deleteItemAxios = createAsyncThunk('messages/deleteItemAxios', async (payload) => {
-  const { id } = payload;
+export const deleteItemAxios = createAsyncThunk('messages/deleteItemAxios', async (id) => {
   try {
     const resp = await axios.delete(`${url}/${id}`);
     return resp.data;
@@ -55,17 +55,16 @@ const messageSlice = createSlice({
     addLecture: (state, action) => {
       const newState = {
         state,
-        messageList: [...state.messageList,
-          { ...action.payload }],
-          status: 'add_lecture',
+        messageList: [...state.messageList],
+          status: 'added_lecture',
       };
       return newState;
     },
     removeLecture: (state, action) => {
-      const { id } = action.payload;
       const newState = {
         state,
-        messageList: [...state.messageList.filter((item) => item.id !== id)],
+        messageList: [...state.messageList],
+        status: 'removed_lecture',
       };
       return newState;
     },
@@ -85,8 +84,7 @@ const messageSlice = createSlice({
             webLink: action.payload[el].web_link,
             price: action.payload[el].price,
             cancelled: action.payload[el].cancelled,
-            teacherId: action.payload[el].teacher_id,
-            
+            teacherId: action.payload[el].teacher_id, 
           };
           newMessageList.push(newMessage);
         });

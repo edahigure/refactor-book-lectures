@@ -59,8 +59,10 @@ function Greeting(props) {
         <button
           type="submit"
           onClick={() => {
-            dispatch(removeLecture({ id }));
-            dispatch(deleteItemAxios({ id }));
+            
+            dispatch(deleteItemAxios( id ));
+            dispatch(removeLecture());
+      
           }}
         >
           Remove

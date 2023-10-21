@@ -7,20 +7,17 @@ import { useSelector } from 'react-redux';
 const Details = () => {
   const { currentLectureId } = useSelector((store) => store.currentLecture);
   const { messageList } = useSelector((state) => state.message);
-
-  console.log('messageList',messageList)
   let currentLecture;
 
   messageList.forEach(element => {
-    console.log(element.id)
-    console.log(currentLectureId.id)
+
     if(element.id===currentLectureId.id ){
       currentLecture=element
     }
     
   });
   
-  console.log('currentLecture',currentLecture)
+
   const { description } = currentLecture;
   const { imageUrl } = currentLecture;
   const { name } = currentLecture;

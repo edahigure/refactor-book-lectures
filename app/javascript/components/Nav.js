@@ -52,16 +52,6 @@ const Nav = () => {
           <li className="nav-item">
             <NavLink
               id="hide-1"
-              to="/reserve"
-              className={({ isActive }) => (isActive ? 'StyledNavLink' : 'StyledNavLink active')}
-            >
-              RESERVE FORM
-            </NavLink>
-          </li>
-
-          <li className="nav-item">
-            <NavLink
-              id="hide-1"
               to="/reservations"
               className={({ isActive }) => (isActive ? 'StyledNavLink' : 'StyledNavLink active')}
             >
@@ -78,15 +68,7 @@ const Nav = () => {
               ADD LECTURE
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink
-              id="hide-1"
-              to="/delete_lecture"
-              className={({ isActive }) => (isActive ? 'StyledNavLink' : 'StyledNavLink active')}
-            >
-              DELETE LECTURE
-            </NavLink>
-          </li>
+          
         </ul>
         <div className="social-group">
           <ul>

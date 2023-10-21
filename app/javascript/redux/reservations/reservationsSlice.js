@@ -4,8 +4,6 @@ import axios from 'axios';
 const url = 'http://localhost:3000/api/v1/users';
 
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async (currentUser) => {
-  
-  
   try {
     const response = await axios.get(`${url}/${currentUser}/reservations`);
     return response.data;
@@ -18,9 +16,9 @@ export const addReservationAxios = createAsyncThunk('reservations/addReservation
   const {
     userId, lectureId, date, place, payment, paid, cancelled
   } = payload;
-  
+
   try {
-    const resp = await axios.post(url, {
+    const resp = await axios.post(`${url}/${userId}/reservations`, {
       user_id: userId,
       lecture_id: lectureId,
       date,
@@ -57,17 +55,17 @@ const reservationSlice = createSlice({
     addReservation: (state, action) => {
       const newState = {
         state,
-        reservationList: [...state.reservationList,
-          { ...action.payload }],
-          statusReservation: 'add_reservation',
+        reservationList: [...state.reservationList],
+          statusReservation: 'added_reservation',
       };
       return newState;
     },
-    removeReservation: (state, action) => {
-      const { id } = action.payload;
+    removeReservation: (state, action) => {      
       const newState = {
         state,
-        reservationList: [...state.reservationList.filter((item) => item.id !== id)],
+        reservationList: [...state.reservationList],
+          statusReservation: 'removed_reservation',
+
       };
       return newState;
     },
@@ -87,8 +85,7 @@ const reservationSlice = createSlice({
             place: action.payload[el].place,
             payment: action.payload[el].payment,
             paid: action.payload[el].paid,
-            cancelled: action.payload[el].cancelled,
-            
+            cancelled: action.payload[el].cancelled,            
           };
           newReservationList.push(newReservation);
         });

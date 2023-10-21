@@ -59,7 +59,7 @@ function Reservation(props) {
         <button
           type="submit"
           onClick={() => {
-            dispatch(removeReservation({ id }));
+            dispatch(removeReservation());
             dispatch(deleteReservationAxios( id , userId ));
           }}
         >

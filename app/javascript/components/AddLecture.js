@@ -2,12 +2,15 @@ import './AddLecture.css';
 import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { addLecture, addItemAxios, fetchMessages } from '../redux/messages/messagesSlice';
 
 
 
+
+
 function AddLecture() {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -18,39 +21,15 @@ function AddLecture() {
   const [cancelled, setCancelled] = useState('');
   const [teacherId, setTeacherId] = useState('');
 
-  const [inputs, setInputs] = useState({});
 
   const { currentUser } = useSelector((state) => state.currentUser);
-  console.log('currentUser',currentUser);
-
-  useEffect(() => {
-    if(status === 'add_lecture'){
-      dispatch(fetchMessages());
-    }
-    
-  }, [dispatch]);
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    const eventName = event.target.name;
-    const { value } = event.target;
-    setInputs((values) => ({ ...values, [eventName]: value }));
-    setName(inputs.name);
-    setimageUrl(inputs.imageUrl);
-    setDescription(inputs.description);
-    setwebLink(inputs.webLink);
-    setPrice(inputs.price);
-    setCancelled(false);
-    setTeacherId(currentUser)
-  };
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(addLecture({
-      name, imageUrl, description, webLink, price, cancelled, teacherId
-    }));
-
+    dispatch(addLecture())
+    
     dispatch(addItemAxios({
       name,
       imageUrl,
@@ -59,9 +38,11 @@ function AddLecture() {
       price,
       cancelled,
       teacherId
-    }));
-    dispatch(fetchMessages());
-    navigate('/lectures');
+    })); 
+
+    
+     
+    navigate('/lectures')
     
   };
 
@@ -81,8 +62,8 @@ function AddLecture() {
             type="text"
             name="name"
             placeholder="Lecture name"
-            value={inputs.name || ''}
-            onChange={handleChange}
+            value={name || ''}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
@@ -94,8 +75,8 @@ function AddLecture() {
             type="text"
             name="imageUrl"
             placeholder="Image url"
-            value={inputs.imageUrl || ''}
-            onChange={handleChange}
+            value={imageUrl || ''}
+            onChange={(e) => setimageUrl(e.target.value)}
             required
           />
         </label>
@@ -107,8 +88,8 @@ function AddLecture() {
             type="text"
             name="webLink"
             placeholder="Website link"
-            value={inputs.webLink || ''}
-            onChange={handleChange}
+            value={webLink || ''}
+            onChange={(e) => setwebLink(e.target.value)}
             required
           />
         </label>
@@ -120,8 +101,13 @@ function AddLecture() {
             type="number"
             name="price"
             placeholder="Price"
-            value={inputs.price || ''}
-            onChange={handleChange}
+            value={price || ''}
+            onChange={(e) => {
+              setPrice(e.target.value)
+              setCancelled(false);
+              setTeacherId(currentUser);                   
+            }
+            }
           />
         </label>
 
@@ -140,6 +126,9 @@ function AddLecture() {
         <button className="form-button" type="submit" id="btn-submit">
           Add Lecture
         </button>
+        <div>
+          Saved
+        </div>
       </form>
 
     </section>

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentLectureId: 0,
-  status: 'not loaded',
+  status: 'no_current_lecture',
 };
 /* eslint no-param-reassign: "error" */
 

@@ -13,8 +13,7 @@ export default function Reservations() {
 
   useEffect(() => {
     // Check the status from the Redux store
-    if (statusReservation === 'idle' || statusReservation === 'add_lecture' ) {
-      console.log('currentUser',currentUser)
+    if (statusReservation === 'idle' || statusReservation === 'added_reservation' || statusReservation === 'removed_reservation' ) {
       dispatch(fetchReservations(currentUser));
     }
   }, [status,statusReservation, dispatch]);
