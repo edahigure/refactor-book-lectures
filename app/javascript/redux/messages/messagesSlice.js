@@ -26,7 +26,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
       web_link: webLink,
       price,
       cancelled,
-      teacher_id: 1
+      teacher_id: teacherId
     });
     return resp.data;
   } catch (error) {
