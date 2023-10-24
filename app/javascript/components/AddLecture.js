@@ -23,13 +23,25 @@ function AddLecture() {
 
 
   const { currentUser } = useSelector((state) => state.currentUser);
+
+  
+  
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     dispatch(addLecture())
-    
+
+    console.log('name',name)
+    console.log('imageUrl',imageUrl)
+    console.log('description',description)
+    console.log('webLink',webLink)
+    console.log('price',price)
+    console.log('cancelled',cancelled)
+    console.log('teacherId',teacherId)
+
+
     dispatch(addItemAxios({
       name,
       imageUrl,

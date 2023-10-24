@@ -6,7 +6,7 @@ class Api::V1::UsersController < ApplicationController
   
 
     respond_to do |format|
-      format.json { render json: JSON.pretty_generate(@user.id.as_json) }
+      format.json { render json: JSON.pretty_generate(@user.as_json) }
     end
   end
 

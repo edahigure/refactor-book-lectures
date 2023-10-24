@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser } from '../redux/user/userReducer';
+import { setDataUser } from '../redux/user/dataUserSlice';
 
 
 const Nav = () => {
@@ -17,9 +18,10 @@ const Nav = () => {
         return new Promise((resolve, reject) => {
           fetch(url)
             .then((res) => res.json())
-            .then((userid) => {
-              dispatch(setCurrentUser(userid));
-              resolve(userid);
+            .then((user) => {
+              dispatch(setCurrentUser(user.id));
+              dispatch(setDataUser(user));
+              resolve(user);
             }).catch((err) => {
               reject(err);
             });

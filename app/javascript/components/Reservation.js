@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Reservation.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { removeReservation, deleteReservationAxios } from '../redux/reservations/reservationsSlice';
 
-
 function Reservation(props) {
+
+  const { dataUser } = useSelector((state) => state.dataUser);
+  const { messageList } = useSelector((state) => state.message);
+  
+  
   
   const dispatch = useDispatch();
   const {
@@ -21,6 +25,9 @@ function Reservation(props) {
     cancelled,
   } = props;
 
+  const lecture=messageList.filter((lecture) => lecture.id===lectureId);
+  console.log('lecture',lecture);
+
   return (
     <div className="Lesson-Panel">
 
@@ -30,8 +37,8 @@ function Reservation(props) {
             ID
             {id}
           </li>
-          <li className="title">User Id :{userId}</li>
-          <li className="title">Lecture Id :{lectureId}</li>
+          <li className="title">User  :{dataUser.name}</li>
+          <li className="title">Lecture  :{lecture[0].name}</li>
           <li className="title">Date :{date}</li>
           <li className="title">Place :{place}</li>
 

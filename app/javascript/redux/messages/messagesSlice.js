@@ -17,6 +17,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
     name, imageUrl, description, webLink, price, cancelled, teacherId
   } = payload;
   
+  console.log('payload',payload)
   try {
     const resp = await axios.post(url, {
       name,
@@ -25,7 +26,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
       web_link: webLink,
       price,
       cancelled,
-      teacher_id: teacherId
+      teacher_id: 1
     });
     return resp.data;
   } catch (error) {
