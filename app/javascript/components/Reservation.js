@@ -24,8 +24,7 @@ function Reservation(props) {
   } = props;
 
   const lecture=messageList.filter((lecture) => lecture.id===lectureId);
-  console.log('lecture',lecture);
-
+  
   return (
     <div className="Lesson-Panel">
 
