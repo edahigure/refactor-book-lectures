@@ -1,0 +1,42 @@
+<%= form_with(model: inscription) do |form| %>
+  <% if inscription.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(inscription.errors.count, "error") %> prohibited this inscription from being saved:</h2>
+
+      <ul>
+        <% inscription.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :course_id, style: "display: block" %>
+    <%= form.text_field :course_id %>
+  </div>
+
+  <div>
+    <%= form.label :payment, style: "display: block" %>
+    <%= form.text_field :payment %>
+  </div>
+
+  <div>
+    <%= form.label :paid, style: "display: block" %>
+    <%= form.check_box :paid %>
+  </div>
+
+  <div>
+    <%= form.label :removed, style: "display: block" %>
+    <%= form.check_box :removed %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

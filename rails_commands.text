@@ -1,0 +1,19 @@
+rails generate scaffold Message text:string
+
+rails generate migration AddFieldsToUsers
+
+rails generate scaffold User name:string email:string phone:string role:string
+rails generate scaffold Teacher name:string email:string phone:string role:string
+
+rails generate scaffold Lecture name:string image_url:string description:string web_link:string price:decimal removed:boolean teacher:references
+rails generate scaffold Course name:string image_url:string description:string web_link:string price:decimal duration:decimal start_date:datetime removed:boolean teacher:references
+rails generate scaffold Reservation  user:references lecture:references date:datetime place:string payment:decimal paid:boolean removed:boolean
+rails generate scaffold Inscription  user:references course:references  payment:decimal paid:boolean removed:boolean
+
+
+
+msg1 = Message.create(text: "Hello world")
+msg2 = Message.create(text: "Hello mister")
+msg3 = Message.create(text: "good day ")
+msg4 = Message.create(text: "good morning ")
+msg5 = Message.create(text: "good afternoon")
