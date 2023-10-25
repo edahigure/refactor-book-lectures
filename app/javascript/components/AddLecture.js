@@ -1,13 +1,9 @@
 import './AddLecture.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { addLecture, addItemAxios, fetchMessages } from '../redux/messages/messagesSlice';
-
-
-
-
+import { useNavigate } from 'react-router-dom';
+import { addItemAxios } from '../redux/messages/messagesSlice';
 
 function AddLecture() {
 
@@ -21,26 +17,11 @@ function AddLecture() {
   const [cancelled, setCancelled] = useState('');
   const [teacherId, setTeacherId] = useState('');
 
-
   const { currentUser } = useSelector((state) => state.currentUser);
 
-  
-  
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    dispatch(addLecture())
-
-    console.log('name',name)
-    console.log('imageUrl',imageUrl)
-    console.log('description',description)
-    console.log('webLink',webLink)
-    console.log('price',price)
-    console.log('cancelled',cancelled)
-    console.log('teacherId',teacherId)
-
 
     dispatch(addItemAxios({
       name,
@@ -50,10 +31,8 @@ function AddLecture() {
       price,
       cancelled,
       teacherId
-    })); 
+    }));     
 
-    
-     
     navigate('/lectures')
     
   };

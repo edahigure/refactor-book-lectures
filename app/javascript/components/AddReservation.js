@@ -22,35 +22,9 @@ function AddReservation() {
 
   const [inputs, setInputs] = useState({});
 
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    const eventName = event.target.name;
-    const { value } = event.target;
-    setInputs((values) => ({ ...values, [eventName]: value }));
-    setUserId(currentUser);
-    setLectureId(currentLectureId);
-    setDate(inputs.date);
-    setPlace(inputs.place);
-    setPayment(inputs.payment);
-    setPaid(false);
-    setCancelled(false);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setUserId(currentUser);
-    setLectureId(currentLectureId.id);
-    setDate(date);
-    setPlace(place);
-    setPayment(payment);
-    setPaid(false);
-    setCancelled(false)
-
-    dispatch(addReservation({
-      userId: currentUser, lectureId: currentLectureId.id, date, place, payment, paid, cancelled
-    }));
 
     dispatch(addReservationAxios({
       userId: currentUser,
@@ -61,7 +35,7 @@ function AddReservation() {
       paid,
       cancelled
     }));
-    dispatch(fetchReservations(currentUser));
+    
     navigate('/reservations');
     
   };
@@ -108,7 +82,14 @@ function AddReservation() {
             name="payment"
             placeholder="payment"
             value={payment || ''}
-            onChange={(e) => setPayment(e.target.value)}
+            onChange={(e) => {
+              setPayment(e.target.value)
+              setUserId(currentUser);
+              setLectureId(currentLectureId.id);
+              setPaid(false);
+              setCancelled(false);
+            }
+          }
             required
           />
         </label>

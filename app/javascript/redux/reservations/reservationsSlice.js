@@ -51,25 +51,6 @@ const initialState = {
 const reservationSlice = createSlice({
   name: 'reservation',
   initialState,
-  reducers: {
-    addReservation: (state, action) => {
-      const newState = {
-        state,
-        reservationList: [...state.reservationList],
-          statusReservation: 'added_reservation',
-      };
-      return newState;
-    },
-    removeReservation: (state, action) => {      
-      const newState = {
-        state,
-        reservationList: [...state.reservationList],
-          statusReservation: 'removed_reservation',
-
-      };
-      return newState;
-    },
-  },
   extraReducers(builder) {
     builder
       .addCase(fetchReservations.fulfilled, (state, action) => {
@@ -93,9 +74,28 @@ const reservationSlice = createSlice({
         return { reservationList: newReservationList, statusReservation: 'succeeded' };
       })
       .addCase(fetchReservations.pending, (state) => ({ ...state, statusReservation: 'loading' }))
-      .addCase(fetchReservations.rejected, (state, action) => ({ ...state, statusReservation: 'failed', error: action.error.message }));
+      .addCase(fetchReservations.rejected, (state, action) => ({ ...state, statusReservation: 'failed', error: action.error.message }))
+      .addCase(addReservationAxios.fulfilled, (state, action) => {        
+        const newState = {
+          state,
+          reservationList: [...state.reservationList],
+            statusReservation: 'added_reservation',
+        };
+        return newState;
+      })
+      .addCase(addReservationAxios.pending, (state) => ({ ...state, statusReservation: 'loading' }))
+      .addCase(addReservationAxios.rejected, (state, action) => ({ ...state, statusReservation: 'failed', error: action.error.message }))
+      .addCase(deleteReservationAxios.fulfilled, (state, action) => {        
+        const newState = {
+          state,
+          reservationList: [...state.reservationList],
+            statusReservation: 'removed_reservation',
+        };
+        return newState;
+      })
+      .addCase(deleteReservationAxios.pending, (state) => ({ ...state, statusReservation: 'loading' }))
+      .addCase(deleteReservationAxios.rejected, (state, action) => ({ ...state, statusReservation: 'failed', error: action.error.message }));
   },
 });
 
-export const { addReservation, removeReservation } = reservationSlice.actions;
 export default reservationSlice.reducer;

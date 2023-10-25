@@ -4,14 +4,12 @@ import './Reservation.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeReservation, deleteReservationAxios } from '../redux/reservations/reservationsSlice';
+import {  deleteReservationAxios } from '../redux/reservations/reservationsSlice';
 
 function Reservation(props) {
 
   const { dataUser } = useSelector((state) => state.dataUser);
   const { messageList } = useSelector((state) => state.message);
-  
-  
   
   const dispatch = useDispatch();
   const {
@@ -66,7 +64,6 @@ function Reservation(props) {
         <button
           type="submit"
           onClick={() => {
-            dispatch(removeReservation());
             dispatch(deleteReservationAxios( id , userId ));
           }}
         >

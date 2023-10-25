@@ -4,7 +4,7 @@ import './Greeting.css';
 
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { removeLecture, deleteItemAxios } from '../redux/messages/messagesSlice';
+import { deleteItemAxios } from '../redux/messages/messagesSlice';
 import { setLectureId } from '../redux/lecture/currentLectureSlice';
 
 function Greeting(props) {
@@ -58,11 +58,8 @@ function Greeting(props) {
       <div className="actions">
         <button
           type="submit"
-          onClick={() => {
-            
-            dispatch(deleteItemAxios( id ));
-            dispatch(removeLecture());
-      
+          onClick={() => {            
+            dispatch(deleteItemAxios( id ));      
           }}
         >
           Remove

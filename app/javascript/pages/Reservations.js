@@ -4,15 +4,12 @@ import { fetchReservations } from '../redux/reservations/reservationsSlice';
 import Reservation from '../components/Reservation';
 import './Reservations.css';
 
-import { setCurrentUser } from '../redux/user/userReducer';
-
 export default function Reservations() {
   const dispatch = useDispatch();
   const { reservationList, statusReservation } = useSelector((store) => store.reservation);
   const { status, currentUser } = useSelector((store) => store.currentUser);
 
   useEffect(() => {
-    // Check the status from the Redux store
     if (statusReservation === 'idle' || statusReservation === 'added_reservation' || statusReservation === 'removed_reservation' ) {
       dispatch(fetchReservations(currentUser));
     }

@@ -17,7 +17,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
     name, imageUrl, description, webLink, price, cancelled, teacherId
   } = payload;
   
-  console.log('payload',payload)
+  
   try {
     const resp = await axios.post(url, {
       name,
@@ -27,7 +27,7 @@ export const addItemAxios = createAsyncThunk('messages/addItemAxios', async (pay
       price,
       cancelled,
       teacher_id: teacherId
-    });
+    });    
     return resp.data;
   } catch (error) {
     return error.message;
@@ -52,24 +52,6 @@ const initialState = {
 const messageSlice = createSlice({
   name: 'message',
   initialState,
-  reducers: {
-    addLecture: (state, action) => {
-      const newState = {
-        state,
-        messageList: [...state.messageList],
-          status: 'added_lecture',
-      };
-      return newState;
-    },
-    removeLecture: (state, action) => {
-      const newState = {
-        state,
-        messageList: [...state.messageList],
-        status: 'removed_lecture',
-      };
-      return newState;
-    },
-  },
   extraReducers(builder) {
     builder
       .addCase(fetchMessages.fulfilled, (state, action) => {
@@ -93,7 +75,33 @@ const messageSlice = createSlice({
         return { messageList: newMessageList, status: 'succeeded' };
       })
       .addCase(fetchMessages.pending, (state) => ({ ...state, status: 'loading' }))
-      .addCase(fetchMessages.rejected, (state, action) => ({ ...state, status: 'failed', error: action.error.message }));
+      .addCase(fetchMessages.rejected, (state, action) => ({ ...state, status: 'failed', error: action.error.message }))
+      .addCase(addItemAxios.fulfilled, (state, action) => {
+        // Assuming that the action.payload.data contains the fetched message data
+        console.log('action.payload',action.payload)
+        const newState = {
+          state,
+          messageList: [...state.messageList ],
+          status: 'added_lecture',
+        };      
+        return newState;
+
+      })
+      .addCase(addItemAxios.pending, (state) => ({ ...state, status: 'loading' }))
+      .addCase(addItemAxios.rejected, (state, action) => ({ ...state, status: 'failed', error: action.error.message }))
+      .addCase(deleteItemAxios.fulfilled, (state, action) => {
+        // Assuming that the action.payload.data contains the fetched message data
+        console.log('action.payload',action.payload)
+        const newState = {
+          state,
+          messageList: [...state.messageList ],
+          status: 'removed_lecture',
+        };      
+        return newState;
+
+      })
+      .addCase(deleteItemAxios.pending, (state) => ({ ...state, status: 'loading' }))
+      .addCase(deleteItemAxios.rejected, (state, action) => ({ ...state, status: 'failed', error: action.error.message }));
   },
 });
 
