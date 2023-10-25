@@ -4,7 +4,7 @@
 
 
 
-  <h1><b>My new rails app</b></h1>
+  <h1><b>refactor-book-lectures</b></h1>
 
 </div>
 
@@ -49,7 +49,7 @@ Ruby on Rails, React, Redux
 
 ### Key Features <a name="key-features"></a>
 
-This is a good template for applications that uses both rails and react redux.
+Here I refactor the reserve lectures app, to solve the issue of the browser. Some improvement in the redux section, and a modified database
 
 ### Project requirements
 
