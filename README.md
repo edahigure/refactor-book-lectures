@@ -4,7 +4,7 @@
 
 
 
-  <h1><b>My new rails app</b></h1>
+  <h1><b>Refactor book lectures</b></h1>
 
 </div>
 
