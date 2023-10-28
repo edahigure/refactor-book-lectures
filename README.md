@@ -28,6 +28,10 @@
 
 # 📖 Rails Redux app 
 
+Here we refactor an application for make reservations to an online school that offer lectures. The user can
+select which lectures he want to attend, and make a reservation of date and place. 
+The user can loging a see all his reserved lectures, also add lectures and remove lectures.
+
 
 
 ## 🛠 Built With <a name="built-with"></a>
